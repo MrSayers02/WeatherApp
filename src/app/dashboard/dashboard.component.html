@@ -1,0 +1,42 @@
+
+<h2>Weather Locally</h2>
+<div class="Featured">
+    <div *ngFor="let item of weatherLocally" 
+    class="box-covering">
+         <p>{{item.town}}</p>
+        <img src= {{item.icon}} alt="" width="80" height="80">
+        <p>{{item.temp}}°</p>
+    </div>
+
+</div>
+<mat-tab-group
+[disablePagination]="true"
+>
+<mat-tab label="Today">
+    <div class="Featured">
+        <div *ngFor="let item of weatherHourly" 
+        class="box-covering">
+             <p>{{item.hour}}</p>
+            <img src= {{item.icon}} alt="" width="80" height="80">
+            <p>{{item.temp}}°</p>
+        </div>
+    </div>
+    
+
+<mat-tab label = "Week">
+    <div class="Featured">
+        <div *ngFor="let item of weatherDaily" 
+        class="box-covering">
+             <p>{{item.day}}</p>
+            <img src= {{item.icon}} alt="" width="80" height="80">
+            <p>{{item.temp}}°</p>
+        </div>
+        
+        
+    
+    </div>
+    
+    
+<p >{{weatherAPI}}</p>
+
+<!--https://www.weatherapi.com/api-explorer.aspx-->
