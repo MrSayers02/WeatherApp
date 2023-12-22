@@ -1,5 +1,44 @@
 <header>
-    <input type="text" name="" id="">
-    <button>
-    </button>
+    <input type="text" name="search-location"  [(ngModel)]="locationVal" value="Stellenbosch" >
+    <button (click)="fetchData(locationVal)"></button>
+
 </header>
+
+    <div class="Featured"  *ngIf="data">
+        <div  
+        class="box-covering" id="big-box">
+    
+            <p id="big-box-p">{{data.location.name}}</p>
+            <img src= {{data.current.condition.icon}} id="big-box-img" alt="" width="80" height="80">
+            <p id="big-box-p">{{data.current.temp_c|| ''}}°</p>
+        </div>
+    
+    </div>
+
+    <mat-tab-group
+[disablePagination]="true"
+>
+<mat-tab label="Today">
+    <div class="Featured">
+        <div *ngFor="let item of activeLocationH" 
+        class="box-covering">
+             <p>{{item.time.split(' ')[1]}}</p>
+            <img src= {{item.condition.icon}} alt="" width="80" height="80">
+            <p>{{item.temp_c}}°</p>
+        </div>
+    </div>
+    
+
+<mat-tab label = "Week">
+    <div class="Featured">
+        <div *ngFor="let item of activeLocationD" 
+        class="box-covering">
+             <p>{{getDayOfWeek(item.date)}}</p>
+            <img src= {{item.day.condition.icon}} alt="" width="80" height="80">
+            <p>{{item.day.avgtemp_c}}°</p>
+        </div>
+        
+        
+    
+    </div>
+

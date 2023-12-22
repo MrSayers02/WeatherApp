@@ -2,10 +2,11 @@
 <h2>Weather Locally</h2>
 <div class="Featured">
     <div *ngFor="let item of weatherLocally" 
-    class="box-covering">
-         <p>{{item.town}}</p>
-        <img src= {{item.icon}} alt="" width="80" height="80">
-        <p>{{item.temp}}°</p>
+    class="box-covering" id="big-box" (click) ="onClickMe(item)"   clickable>
+
+        <p id="big-box-p">{{item.location.name}}</p>
+        <img src= {{item.current.condition.icon}} id="big-box-img" alt="" width="80" height="80">
+        <p id="big-box-p">{{item.current.temp_c}}°</p>
     </div>
 
 </div>
@@ -14,22 +15,22 @@
 >
 <mat-tab label="Today">
     <div class="Featured">
-        <div *ngFor="let item of weatherHourly" 
+        <div *ngFor="let item of activeLocationH" 
         class="box-covering">
-             <p>{{item.hour}}</p>
-            <img src= {{item.icon}} alt="" width="80" height="80">
-            <p>{{item.temp}}°</p>
+             <p>{{item.time.split(' ')[1]}}</p>
+            <img src= {{item.condition.icon}} alt="" width="80" height="80">
+            <p>{{item.temp_c}}°</p>
         </div>
     </div>
     
 
 <mat-tab label = "Week">
     <div class="Featured">
-        <div *ngFor="let item of weatherDaily" 
+        <div *ngFor="let item of activeLocationD" 
         class="box-covering">
-             <p>{{item.day}}</p>
-            <img src= {{item.icon}} alt="" width="80" height="80">
-            <p>{{item.temp}}°</p>
+             <p>{{getDayOfWeek(item.date)}}</p>
+            <img src= {{item.day.condition.icon}} alt="" width="80" height="80">
+            <p>{{item.day.avgtemp_c}}°</p>
         </div>
         
         
@@ -37,6 +38,6 @@
     </div>
     
     
-<p >{{weatherAPI}}</p>
+
 
 <!--https://www.weatherapi.com/api-explorer.aspx-->
